@@ -1,0 +1,55 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Subjects</h3>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.name }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="delete(item.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="list.length == 0">
+            <td colspan="3">No item to show</td>
+          </tr>
+          <tr>
+            <td>#</td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="subject.name"
+                class="form-control"
+                placeholder="Subject Name"
+              />
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="add(subject)"
+              >
+                Add
+              </button> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

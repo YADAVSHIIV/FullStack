@@ -1,0 +1,130 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Add/Remove Students</h3>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Class</th>
+            <!-- <th scope="col">Subject</th>
+            <th scope="col">Marks</th> -->
+            <th colspan="2" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.firstName }}</td>
+            <td>{{ item.lastName }}</td>
+            <td>
+              {{ item.class }}
+              {{
+                item.class == 1
+                  ? "st"
+                  : item.class == 2
+                  ? "nd"
+                  : item.class == 3
+                  ? "rd"
+                  : "th"
+              }}
+            </td>
+            
+            <!-- <td>{{ item.name }}</td> 
+            <td>{{ item.studentMark }}</td> -->
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="deleteStudent(item.id)"
+              >
+                Delete
+              </button>
+            </td>
+            <td>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="edit(item)"
+                >
+                  Edit
+                </button>
+              </td>
+          </tr>
+          <tr *ngIf="list.length == 0">
+            <td colspan="5">No item to show</td>
+          </tr>
+          <tr>
+            <td>#</td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="student.firstName"
+                class="form-control"
+                placeholder="First Name"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                [(ngModel)]="student.lastName"
+                class="form-control"
+                placeholder="Last Name"
+              />
+            </td>
+            <td>
+                <input
+                  type="number"
+                  [(ngModel)]="student.class"
+                  class="form-control"
+                  placeholder="Class"
+                />
+              </td>
+              <!-- <td>
+                <input
+                  type="number"
+                  [(ngModel)]="student.name"
+                  class="form-control"
+                  placeholder="Subject"
+                />
+              </td><td>
+                <input
+                  type="number"
+                  [(ngModel)]="student.studentMark"
+                  class="form-control"
+                  placeholder="Mark"
+                />
+              </td> -->
+
+            <td colspan="2">
+                <button *ngIf='!isEdit'
+                type="button"
+                class="btn btn-success"
+                (click)="addStudent(student)"
+              >
+                Add
+              </button>   
+              <button *ngIf='isEdit'
+              type="button"
+              class="btn btn-warning mr-2"
+              (click)="updateStudent(student)"
+            >
+              Update
+            </button>
+             <button *ngIf='isEdit'
+            type="button"
+            class="btn btn-info "
+            (click)="cancleEdit(student)"
+          >
+            Cancel
+          </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
